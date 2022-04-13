@@ -1,0 +1,28 @@
+{
+  "test_dir": "tests",
+  "mode": "logisim",
+  "force_suite_filename": "hw4.circ",
+  "test_suite_names": ["boolean", "arithmetic", "shift", "memory", "control", "io"],
+  "non_zero_exit_status_penalty": 1.0,
+  "memory_penalty": 1.0,
+  "test_suites": {
+    "boolean": [
+        { "desc": "and, or instructions",              "args": ["-c", "10", "-ic", "1,reset=1:2,reset=0", "-lo", "tests/boolean.imem.lgsim", "-la", "tests/boolean.dmem.lgsim"], "command_append": "| grep -E -v '(probe         |/ )'", "diff": "normal", "valgrind": false , "points" : 5}
+    ],
+    "arithmetic": [
+        { "desc": "addi, add, sub instructions",       "args": ["-c", "10", "-ic", "1,reset=1:2,reset=0", "-lo", "tests/arithmetic.imem.lgsim", "-la", "tests/arithmetic.dmem.lgsim"], "command_append": "| grep -E -v '(probe         |/ )'", "diff": "normal", "valgrind": false , "points" : 5 }
+    ],
+    "shift": [
+        { "desc": "shl, shra instructions",             "args": ["-c", "10", "-ic", "1,reset=1:2,reset=0", "-lo", "tests/shift.imem.lgsim", "-la", "tests/shift.dmem.lgsim"], "command_append": "| grep -E -v '(probe         |/ )'", "diff": "normal", "valgrind": false , "points" : 5 }
+    ],
+    "memory": [
+        { "desc": "lw, sw instructions",               "args": ["-c", "20", "-ic", "1,reset=1:2,reset=0", "-lo", "tests/memory.imem.lgsim", "-la", "tests/memory.dmem.lgsim"], "command_append": "| grep -E -v '(probe         |/ )'", "diff": "normal", "valgrind": false , "points" : 5 }
+    ],
+    "control": [
+        { "desc": "bgt, beq, jal, j, jr instructions", "args": ["-c", "12", "-ic", "1,reset=1:2,reset=0", "-lo", "tests/control.imem.lgsim", "-la", "tests/control.dmem.lgsim"], "command_append": "| grep -E -v '(probe         |/ )'", "diff": "normal", "valgrind": false , "points" : 10 }
+    ],
+    "io": [
+        { "desc": "input, output instructions",        "args": ["-lo", "tests/io.imem.lgsim", "-la", "tests/io.dmem.lgsim", "-lk", "tests/io.buffer", "-c", "20", "-tty", "full"], "command_append": "| grep -E -v '(probe         |/ )'", "diff": "normal", "valgrind": false , "points" : 10 }
+    ]
+  }
+}
